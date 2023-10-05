@@ -1,28 +1,25 @@
-import re
-
-
-
-
-
 def convertToDuration(cell):
-    hr = 0
-    min = 0
-    sec = 0
+    # Split `00h 00m 00s` string into three components
+    cell = cell.split(" ")
 
-    hr_matched = re.search('insert regex', cell)
-    if hr:
-        hr = int(hr_matched.group(1))
+    h = 0
+    m = 0
+    s = 0
 
-    min_matched = re.search('insert regex', cell)
-    if min:
-        min = int(min_matched.group(1))
 
-    sec_matched = re.search('insert regex', cell)
-    if sec:
-        sec = int(sec_matched.group(1))
+    # Remove strings for each components
+    for i in cell:
+        if 'h' in i:
+            h = int(i.replace('h', ''))
 
-    # duration_in_sec = (hr * 60 * 60) + (min * 60) + (sec)
+        if 'm' in i:
+            m = int(i.replace('m', ''))
+            
+        if 's' in i:
+            s = int(i.replace('s', ''))
 
-    output = f"{hr}:{min}:{sec}"
+        else:
+            pass
 
-    return output
+
+    return f"{h:02d}:{m:02d}:{s:02d}"
